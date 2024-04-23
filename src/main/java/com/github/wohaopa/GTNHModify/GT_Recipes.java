@@ -27,7 +27,7 @@ public class GT_Recipes {
 
     public static void setDuration(GT_Recipe gtRecipe, int aDuration) {
         // gtRecipe.mDuration = aDuration;
-        gtRecipe.mDuration = 1;
+        gtRecipe.mDuration = aDuration == 0 ? 0 : 1;
     }
 
     public static void setInputs(GT_Recipe gtRecipe, ItemStack[] aInputs) {
@@ -42,7 +42,7 @@ public class GT_Recipes {
         gtRecipe.mOutputs = aOutputs;
         for (ItemStack itemStack : aOutputs) {
             if (itemStack == null) continue;
-            itemStack.stackSize = 64;
+            if (itemStack.stackSize < 64) itemStack.stackSize = 64;
         }
     }
 
@@ -59,12 +59,12 @@ public class GT_Recipes {
 
         for (FluidStack fluidStack : aOutputs) {
             if (fluidStack == null) continue;
-            fluidStack.amount = 64 * 144;
+            if (fluidStack.amount < 9216) fluidStack.amount = 9216;
         }
     }
 
     public static void setEUt(GT_Recipe gtRecipe, int aEUt) {
         // gtRecipe.mEUt = aEUt;
-        gtRecipe.mEUt = 1;
+        gtRecipe.mEUt = aEUt == 0 ? 0 : 1;
     }
 }
