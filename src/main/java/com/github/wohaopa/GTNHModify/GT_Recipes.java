@@ -7,31 +7,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import gregtech.api.util.GT_Recipe;
-import gregtech.api.util.extensions.ArrayExt;
 
 public class GT_Recipes {
 
     private static Set<GT_Recipe> recipes = new HashSet<>();
 
     public static void addRecipe(GT_Recipe recipe) {
-        recipe.mEUt = 1;
-        recipe.mDuration = 1;
-        for (ItemStack itemStack : recipe.mOutputs) {
-            if (itemStack == null) continue;
-            itemStack.stackSize = 64;
-        }
-        for (ItemStack itemStack : recipe.mInputs) {
-            if (itemStack == null) continue;
-            itemStack.stackSize = 1;
-        }
-        for (FluidStack fluidStack : recipe.mFluidOutputs) {
-            if (fluidStack == null) continue;
-            fluidStack.amount = 64 * 144;
-        }
-        for (FluidStack fluidStack : recipe.mFluidInputs) {
-            if (fluidStack == null) continue;
-            fluidStack.amount = 1;
-        }
+
+        if (recipes.contains(recipe)) return;
+        setDuration(recipe, recipe.mDuration);
+        setInputs(recipe, recipe.mInputs);
+        setOutputs(recipe, recipe.mOutputs);
+        setFluidInputs(recipe, recipe.mFluidInputs);
+        setFluidOutputs(recipe, recipe.mFluidOutputs);
+        setEUt(recipe, recipe.mEUt);
 
         recipes.add(recipe);
     }
@@ -42,19 +31,36 @@ public class GT_Recipes {
     }
 
     public static void setInputs(GT_Recipe gtRecipe, ItemStack[] aInputs) {
-        gtRecipe.mInputs = ArrayExt.withoutTrailingNulls(aInputs, ItemStack[]::new);
+        gtRecipe.mInputs = aInputs;
+        for (ItemStack itemStack : aInputs) {
+            if (itemStack == null) continue;
+            if (itemStack.stackSize > 0) itemStack.stackSize = 1;
+        }
     }
 
     public static void setOutputs(GT_Recipe gtRecipe, ItemStack[] aOutputs) {
-        gtRecipe.mOutputs = ArrayExt.withoutTrailingNulls(aOutputs, ItemStack[]::new);
+        gtRecipe.mOutputs = aOutputs;
+        for (ItemStack itemStack : aOutputs) {
+            if (itemStack == null) continue;
+            itemStack.stackSize = 64;
+        }
     }
 
     public static void setFluidInputs(GT_Recipe gtRecipe, FluidStack[] aInputs) {
-        gtRecipe.mFluidInputs = ArrayExt.withoutTrailingNulls(aInputs, FluidStack[]::new);
+        gtRecipe.mFluidInputs = aInputs;
+        for (FluidStack fluidStack : aInputs) {
+            if (fluidStack == null) continue;
+            if (fluidStack.amount > 0) fluidStack.amount = 1;
+        }
     }
 
     public static void setFluidOutputs(GT_Recipe gtRecipe, FluidStack[] aOutputs) {
-        gtRecipe.mFluidOutputs = ArrayExt.withoutTrailingNulls(aOutputs, FluidStack[]::new);
+        gtRecipe.mFluidOutputs = aOutputs;
+
+        for (FluidStack fluidStack : aOutputs) {
+            if (fluidStack == null) continue;
+            fluidStack.amount = 64 * 144;
+        }
     }
 
     public static void setEUt(GT_Recipe gtRecipe, int aEUt) {
