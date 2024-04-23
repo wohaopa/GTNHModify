@@ -16,14 +16,14 @@ public class GT_Recipes {
     public static void addRecipe(GT_Recipe recipe) {
         if (recipes.contains(recipe)) return;
 
-        recipe.mDuration /= 10;
+        recipe.mDuration = Math.max(recipe.mDuration / 10, 1);
 
         recipes.add(recipe);
     }
 
     public static void setDuration(GT_Recipe gtRecipe, int aDuration) {
         // gtRecipe.mDuration = aDuration;
-        gtRecipe.mDuration = aDuration / 10;
+        gtRecipe.mDuration = Math.max(aDuration / 10, 1);
     }
 
     public static void setInputs(GT_Recipe gtRecipe, ItemStack[] aInputs) {
