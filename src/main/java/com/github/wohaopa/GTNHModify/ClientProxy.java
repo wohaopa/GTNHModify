@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.github.wohaopa.GTNHModify;
 
 public class ClientProxy extends CommonProxy {
 
