@@ -13,12 +13,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(
     modid = GTNHModifyMod.MODID,
     version = Tags.VERSION,
-    name = "MyMod",
+    name = "GTNHModify",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:dreamcraft")
+    dependencies = "required-after:gregtech;")
 public class GTNHModifyMod {
 
-    public static final String MODID = "mymodid";
+    public static final String MODID = "GTNHModify";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
     @SidedProxy(
