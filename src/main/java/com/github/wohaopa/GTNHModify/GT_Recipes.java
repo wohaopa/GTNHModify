@@ -14,16 +14,7 @@ public class GT_Recipes {
     private static Set<GT_Recipe> recipes = new HashSet<>();
 
     public static void addRecipe(GT_Recipe recipe) {
-        recipe.mEUt = 1;
         recipe.mDuration = 1;
-        for (ItemStack itemStack : recipe.mOutputs) {
-            if (itemStack == null) continue;
-            itemStack.stackSize = 64;
-        }
-        for (ItemStack itemStack : recipe.mInputs) {
-            if (itemStack == null) continue;
-            itemStack.stackSize = 1;
-        }
 
         recipes.add(recipe);
     }
@@ -50,7 +41,6 @@ public class GT_Recipes {
     }
 
     public static void setEUt(GT_Recipe gtRecipe, int aEUt) {
-        // gtRecipe.mEUt = aEUt;
-        gtRecipe.mEUt = 1;
+        gtRecipe.mEUt = aEUt;
     }
 }
