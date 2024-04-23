@@ -15,7 +15,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     version = Tags.VERSION,
     name = "GTNHModify",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:gregtech;")
+    dependencies = "required-before:gregtech")
 public class GTNHModifyMod {
 
     public static final String MODID = "GTNHModify";

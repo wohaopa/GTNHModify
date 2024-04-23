@@ -1,5 +1,6 @@
 package com.github.wohaopa.GTNHModify.mixins;
 
+import com.gtnewhorizon.gtnhmixins.LateMixin;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -12,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.wohaopa.GTNHModify.GT_Recipes;
 
 import gregtech.api.util.GT_Recipe;
-import gregtech.api.util.extensions.ArrayExt;
 
 @Mixin(value = GT_Recipe.class, remap = false)
 public abstract class GT_RecipeMixin {
@@ -23,7 +23,7 @@ public abstract class GT_RecipeMixin {
      */
     @Overwrite(remap = false)
     public GT_Recipe setInputs(ItemStack... aInputs) {
-        GT_Recipes.setInputs((GT_Recipe) (Object) this, ArrayExt.withoutTrailingNulls(aInputs, ItemStack[]::new));
+        GT_Recipes.setInputs((GT_Recipe) (Object) this, aInputs);
         return ((GT_Recipe) (Object) this);
     }
 
@@ -33,7 +33,7 @@ public abstract class GT_RecipeMixin {
      */
     @Overwrite(remap = false)
     public GT_Recipe setOutputs(ItemStack... aOutputs) {
-        GT_Recipes.setOutputs((GT_Recipe) (Object) this, ArrayExt.withoutTrailingNulls(aOutputs, ItemStack[]::new));
+        GT_Recipes.setOutputs((GT_Recipe) (Object) this, aOutputs);
         return ((GT_Recipe) (Object) this);
     }
 
@@ -43,7 +43,7 @@ public abstract class GT_RecipeMixin {
      */
     @Overwrite(remap = false)
     public GT_Recipe setFluidInputs(FluidStack... aInputs) {
-        GT_Recipes.setFluidInputs((GT_Recipe) (Object) this, ArrayExt.withoutTrailingNulls(aInputs, FluidStack[]::new));
+        GT_Recipes.setFluidInputs((GT_Recipe) (Object) this, aInputs);
 
         return ((GT_Recipe) (Object) this);
     }
@@ -54,8 +54,7 @@ public abstract class GT_RecipeMixin {
      */
     @Overwrite(remap = false)
     public GT_Recipe setFluidOutputs(FluidStack... aOutputs) {
-        GT_Recipes
-            .setFluidOutputs((GT_Recipe) (Object) this, ArrayExt.withoutTrailingNulls(aOutputs, FluidStack[]::new));
+        GT_Recipes.setFluidOutputs((GT_Recipe) (Object) this, aOutputs);
 
         return ((GT_Recipe) (Object) this);
     }
