@@ -26,7 +26,7 @@ public class GT_Recipes {
         }
         for (FluidStack fluidStack : recipe.mFluidOutputs) {
             if (fluidStack == null) continue;
-            fluidStack.amount = 1;
+            fluidStack.amount = 64 * 144;
         }
         for (FluidStack fluidStack : recipe.mFluidInputs) {
             if (fluidStack == null) continue;
