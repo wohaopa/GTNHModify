@@ -24,6 +24,14 @@ public class GT_Recipes {
             if (itemStack == null) continue;
             itemStack.stackSize = 1;
         }
+        for (FluidStack fluidStack : recipe.mFluidOutputs) {
+            if (fluidStack == null) continue;
+            fluidStack.amount = 1;
+        }
+        for (FluidStack fluidStack : recipe.mFluidInputs) {
+            if (fluidStack == null) continue;
+            fluidStack.amount = 1;
+        }
 
         recipes.add(recipe);
     }
