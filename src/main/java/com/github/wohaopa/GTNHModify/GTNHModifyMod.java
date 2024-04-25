@@ -10,12 +10,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(
-    modid = GTNHModifyMod.MODID,
-    version = Tags.VERSION,
-    name = "GTNHModify",
-    acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-before:gregtech;")
+@Mod(modid = GTNHModifyMod.MODID, version = Tags.VERSION, name = "GTNHModify", acceptedMinecraftVersions = "[1.7.10]"
+// dependencies = "required-before:gregtech;"
+)
 public class GTNHModifyMod {
 
     public static final String MODID = "GTNHModify";
