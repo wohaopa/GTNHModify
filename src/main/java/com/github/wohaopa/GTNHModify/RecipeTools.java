@@ -365,8 +365,8 @@ public class RecipeTools {
 
                 ItemStack itemStack = new ItemStack(itemObj);
 
-                String str0 = itemStack.getDisplayName();
                 try {
+                    String str0 = itemStack.getDisplayName();
                     jsonObject.addProperty("display", str0);
                 } catch (Exception e) {
                     jsonObject.addProperty("exception", e.getMessage());
