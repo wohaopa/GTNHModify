@@ -36,11 +36,11 @@ public class IconDumper extends GuiScreen {
     private int borderSize;
     private int boxSize;
 
-    public IconDumper(GuiScreen ori, List<ItemStack> items) {
+    public IconDumper(GuiScreen ori, int size, List<ItemStack> items) {
         this.ori = ori;
         this.items = items;
 
-        this.iconSize = 32;
+        this.iconSize = size;
         borderSize = iconSize / 16;
         boxSize = iconSize + borderSize * 2;
 

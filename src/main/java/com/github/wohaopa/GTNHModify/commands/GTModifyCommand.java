@@ -93,18 +93,22 @@ public class GTModifyCommand extends CommandBase {
                 if (sender instanceof EntityPlayerMP playerMP) {
 
                     try {
-                        Class<?> clazz = Class.forName("net.minecraft.client.Minecraft");
+                        Class.forName("net.minecraft.client.Minecraft");
                     } catch (ClassNotFoundException e) {
                         sender.addChatMessage(new ChatComponentText("请勿在服务端使用该指令！"));
                         break;
                     }
 
-                    if (args.length < 2) {
-                        sender.addChatMessage(new ChatComponentText("参数错误！/gtm export <方块> [子ID/子ID始] [子ID末]"));
+                    if (args.length < 3) {
+                        sender.addChatMessage(
+                            new ChatComponentText("参数错误！/gtm export <尺寸：16的倍数> <方块> [子ID/子ID始] [子ID末]"));
                         break;
                     }
+                    int size1 = Integer.parseInt(args[1]);
+                    if (size1 % 16 != 0) size1 = size1 / 16 * 16;
+                    if (size1 < 16) size1 = 16;
 
-                    String itemName = args[1];
+                    String itemName = args[2];
                     Item item = (Item) Item.itemRegistry.getObject(itemName);
                     if (item == null) {
                         sender.addChatMessage(new ChatComponentText("未知物品" + itemName + "！"));
@@ -113,15 +117,15 @@ public class GTModifyCommand extends CommandBase {
 
                     List<ItemStack> itemStacks = new ArrayList<>();
 
-                    if (args.length == 3) {
-                        int id = Integer.parseInt(args[2]);
+                    if (args.length == 4) {
+                        int id = Integer.parseInt(args[3]);
 
                         ItemStack itemStack = new ItemStack(item);
                         itemStack.setItemDamage(id);
                         itemStacks.add(itemStack);
-                    } else if (args.length == 4) {
-                        int id1 = Integer.parseInt(args[2]);
-                        int id2 = Integer.parseInt(args[3]);
+                    } else if (args.length == 5) {
+                        int id1 = Integer.parseInt(args[3]);
+                        int id2 = Integer.parseInt(args[4]);
 
                         for (int i = id1; i <= id2; i++) {
                             ItemStack itemStack = new ItemStack(item);
@@ -134,7 +138,7 @@ public class GTModifyCommand extends CommandBase {
                     else itemStacks.add(new ItemStack(item));
 
                     Minecraft.getMinecraft()
-                        .displayGuiScreen(new IconDumper(Minecraft.getMinecraft().currentScreen, itemStacks));
+                        .displayGuiScreen(new IconDumper(Minecraft.getMinecraft().currentScreen, size1, itemStacks));
                 }
 
                 break;
