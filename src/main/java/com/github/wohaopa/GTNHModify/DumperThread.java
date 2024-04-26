@@ -22,6 +22,7 @@ public class DumperThread extends Thread {
     @Override
     public void run() {
         callback.apply("开始！");
+        RecipeTools.dumpItems(callback);
         RecipeTools.dumpForgeOreDictionary(callback);
         RecipeTools.dumpMinecraftRecipe(callback);
         RecipeTools.dumpGregTechRecipe(callback);

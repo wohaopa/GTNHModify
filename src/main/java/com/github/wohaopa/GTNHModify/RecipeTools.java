@@ -37,6 +37,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import cpw.mods.fml.common.ModContainer;
 import gregtech.api.util.GT_Recipe;
@@ -280,15 +281,12 @@ public class RecipeTools {
                     "category",
                     gtRecipe.getRecipeCategory() == null ? "null" : gtRecipe.getRecipeCategory().unlocalizedName);
 
-                List<String> owners = new ArrayList<>();
+                JsonArray owners = new JsonArray();
                 for (ModContainer owner : gtRecipe.owners) {
-                    owners.add(owner.getModId());
+                    owners.add(new JsonPrimitive(owner.getModId()));
                 }
 
-                jsonObject.add(
-                    "owners",
-                    gson.toJsonTree(owners)
-                        .getAsJsonArray());
+                jsonObject.add("owners", owners);
                 jsonObject.add("inputs", itemStacksToJsonArray(gtRecipe.mInputs));
                 jsonObject.add("outputs", itemStacksToJsonArray(gtRecipe.mOutputs));
                 jsonObject.add("fluidInputs", fluidStacksToJsonArray(gtRecipe.mFluidInputs));
@@ -340,4 +338,74 @@ public class RecipeTools {
         jsonToFile(jsonArray, "ore");
     }
 
+    public static void dumpItems(Function<String, Void> callback) {
+        JsonArray jsonArray = new JsonArray();
+
+        long a1 = System.currentTimeMillis();
+        {
+            Set<String> items = Item.itemRegistry.getKeys();
+            int size = items.size();
+            callback.apply("开始处理Item！共计：" + size);
+            int i = 0, step0 = size / SPLIT, step = step0;
+            for (String name : items) {
+                i++;
+                if (i == step) {
+                    callback.apply(String.format("已经完成：%d%%！", i * 100 / size));
+                    step += step0;
+                }
+
+                JsonObject jsonObject = new JsonObject();
+
+                jsonObject.addProperty("name", name);
+                Item itemObj = (Item) Item.itemRegistry.getObject(name);
+                jsonObject.addProperty(
+                    "class",
+                    itemObj.getClass()
+                        .getName());
+
+                ItemStack itemStack = new ItemStack(itemObj);
+
+                String str0 = itemStack.getDisplayName();
+                jsonObject.addProperty("display", str0);
+
+                /*
+                 * Map<String, Object> damage = new HashMap<>();
+                 * if (itemObj.getHasSubtypes()) {
+                 * // itemObj.getMetadata()
+                 * try {
+                 * int length = 0;
+                 * if (itemObj.getMaxDamage() != 0) length = itemObj.getMaxDamage();
+                 * for (int j = 0; j < length; j++) {
+                 * itemStack.setItemDamage(j);
+                 * String str = itemStack.getDisplayName();
+                 * if (str == null || str.equals(str0)) continue;
+                 * if (!damage.containsKey(str)) {
+                 * damage.put(str, j);
+                 * } else {
+                 * Object obj = damage.get(str);
+                 * if (obj instanceof Integer integer) {
+                 * obj = new ArrayList<Integer>();
+                 * ((ArrayList<Integer>) obj).add(integer);
+                 * damage.put(str, obj);
+                 * }
+                 * ((ArrayList<Integer>) obj).add(j);
+                 * }
+                 * }
+                 * } catch (Exception e) {
+                 * }
+                 * }
+                 * if (damage.size() != 0)
+                 * jsonObject.add(
+                 * "damage",
+                 * gson.toJsonTree(damage)
+                 * .getAsJsonObject());
+                 */
+                jsonArray.add(jsonObject);
+            }
+        }
+        long a2 = System.currentTimeMillis();
+        callback.apply(String.format("Item处理完成！用时：%.4fs", (a2 - a1) / 1000.0));
+
+        jsonToFile(jsonArray, "items");
+    }
 }
