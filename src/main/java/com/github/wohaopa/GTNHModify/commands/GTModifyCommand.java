@@ -5,6 +5,9 @@ import java.util.List;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
 import com.github.wohaopa.GTNHModify.DumperThread;
@@ -29,7 +32,7 @@ public class GTModifyCommand extends CommandBase {
 
     @Override
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args) {
-        return Arrays.asList("print", "dump");
+        return Arrays.asList("print", "dump", "hand");
     }
 
     @Override
@@ -46,12 +49,30 @@ public class GTModifyCommand extends CommandBase {
                 sender.addChatMessage(text);
                 break;
             case "dump":
-                DumperThread dumperThread = new DumperThread((str) -> {
-                    sender.addChatMessage(new ChatComponentText(str));
-                    return null;
-                });
-                sender.addChatMessage(new ChatComponentText("导出开始！"));
-                dumperThread.start();
+
+                DumperThread dumperThread = null;
+                try {
+                    dumperThread = new DumperThread((str) -> {
+                        sender.addChatMessage(new ChatComponentText(str));
+                        return null;
+                    });
+                    sender.addChatMessage(new ChatComponentText("导出开始！"));
+                    dumperThread.start();
+                } catch (Exception e) {
+                    sender.addChatMessage(new ChatComponentText("请勿重复导出！"));
+                }
+
+                break;
+            case "hand":
+                if (sender instanceof EntityPlayerMP playerMP) {
+                    ItemStack itemStack = playerMP.getHeldItem();
+                    String msg = "null";
+                    if (itemStack != null && itemStack.getItem() != null) {
+
+                        msg = Item.itemRegistry.getNameForObject(itemStack.getItem());
+                    }
+                    sender.addChatMessage(new ChatComponentText(msg));
+                }
                 break;
             default:
                 sender.addChatMessage(new ChatComponentText("未知指令！"));
