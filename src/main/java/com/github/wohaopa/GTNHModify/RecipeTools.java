@@ -366,7 +366,11 @@ public class RecipeTools {
                 ItemStack itemStack = new ItemStack(itemObj);
 
                 String str0 = itemStack.getDisplayName();
-                jsonObject.addProperty("display", str0);
+                try {
+                    jsonObject.addProperty("display", str0);
+                } catch (Exception e) {
+                    jsonObject.addProperty("exception", e.getMessage());
+                }
 
                 /*
                  * Map<String, Object> damage = new HashMap<>();
