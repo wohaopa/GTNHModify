@@ -33,7 +33,11 @@ public class MixinPlugin implements IMixinConfigPlugin {
     @Override
     public List<String> getMixins() {
         List<String> mixins = new ArrayList<>();
-        mixins.add("GT_RecipeMixin");
+        mixins.add("GT_MetaTileEntity_ScannerMixin");
+        mixins.add("TileEntityFurnaceMixin");
+        mixins.add("GT_MetaTileEntity_MinerMixin");
+        mixins.add("GT_MetaTileEntity_MultiFurnaceMixin");
+        mixins.add("GT_DrillingLogicDelegateMixin");
         return mixins;
     }
 
