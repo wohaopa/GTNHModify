@@ -13,6 +13,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(
     modid = GTNHModifyMod.MODID,
     version = Tags.VERSION,
+    guiFactory = "com.github.wohaopa.GTNHModify.client.gui.GuiFactory",
     name = "GTNHModify",
     acceptedMinecraftVersions = "[1.7.10]",
     dependencies = "required-after:dreamcraft")
