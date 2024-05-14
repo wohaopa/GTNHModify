@@ -34,6 +34,6 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
-    implementation("com.github.GTNewHorizons:NewHorizonsCoreMod:2.3.48:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.6.0-GTNH:dev")
+    implementation("com.github.GTNewHorizons:NewHorizonsCoreMod:2.4.7:dev")
 }
