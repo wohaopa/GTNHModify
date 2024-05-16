@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8.5-GTNH",
   "package": "com.github.wohaopa.GTNHModify.mixins",
-  "plugin": "com.github.wohaopa.GTNHModify.mixins.MixinPlugin",
+  "plugin": "com.github.wohaopa.GTNHModify.MixinPlugin",
   "refmap": "mixins.GTNHModify.refmap.json",
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",

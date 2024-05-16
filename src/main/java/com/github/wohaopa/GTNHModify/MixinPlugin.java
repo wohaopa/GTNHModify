@@ -1,4 +1,4 @@
-package com.github.wohaopa.GTNHModify.mixins;
+package com.github.wohaopa.GTNHModify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +33,13 @@ public class MixinPlugin implements IMixinConfigPlugin {
     @Override
     public List<String> getMixins() {
         List<String> mixins = new ArrayList<>();
-        mixins.add("GT_MetaTileEntity_ScannerMixin");
+        // Minecraft
         mixins.add("TileEntityFurnaceMixin");
+        // GregTech
+        mixins.add("GT_MetaTileEntity_ScannerMixin");
         mixins.add("GT_MetaTileEntity_MinerMixin");
         mixins.add("GT_MetaTileEntity_MultiFurnaceMixin");
-        mixins.add("GT_DrillingLogicDelegateMixin");
+
         return mixins;
     }
 
