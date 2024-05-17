@@ -5,6 +5,8 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
+import com.github.wohaopa.GTNHModify.GTNHModifyMod;
+
 import gregtech.api.util.GT_Recipe;
 
 public abstract class Strategy {
@@ -25,6 +27,7 @@ public abstract class Strategy {
     public static void setStrategy(String strategyName) {
         Strategy strategy1 = instants.getOrDefault(strategyName, NONE);
         if (strategy1 != strategy) {
+            GTNHModifyMod.LOG.info("New strategy enable: " + strategyName);
             strategy1.changeFrom(strategy);
             strategy = strategy1;
             dirty = true;

@@ -18,6 +18,7 @@ public class Handlers {
     public static void init() {
         if (!Strategy.prevInit()) return;
 
+        GTNHModifyMod.LOG.info("Start processing the recipe");
         if (methods.isEmpty()) {
             String pkg = Handlers.class.getName()
                 .replace("Handlers", "");
@@ -29,14 +30,18 @@ public class Handlers {
                     if (iHandler != null) {
                         Method method = clazz.getDeclaredMethod(iHandler.value());
                         methods.add(method);
+                        GTNHModifyMod.LOG.info("Discovery handler: " + className);
                     }
                 } catch (ClassNotFoundException | NoSuchMethodException e) {
                     GTNHModifyMod.LOG.debug("An error occurred while initializing handler. Reason: " + e.getMessage());
                 }
             }
-        } else {
+
             for (Method method : methods) {
                 try {
+                    GTNHModifyMod.LOG.info(
+                        "Invoke handler: " + method.getDeclaringClass()
+                            .getName());
                     method.invoke(null);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     GTNHModifyMod.LOG.debug("An error occurred while executing handler. Reason: " + e.getMessage());
@@ -45,5 +50,6 @@ public class Handlers {
         }
 
         Strategy.postInit();
+        GTNHModifyMod.LOG.info("Complete processing the recipe");
     }
 }
