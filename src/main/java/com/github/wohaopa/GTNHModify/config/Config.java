@@ -5,12 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 import com.github.wohaopa.GTNHModify.GTNHModifyMod;
-import com.github.wohaopa.GTNHModify.strategies.Energyless;
-import com.github.wohaopa.GTNHModify.strategies.None;
-import com.github.wohaopa.GTNHModify.strategies.OneTick;
-import com.github.wohaopa.GTNHModify.strategies.Output64;
 import com.github.wohaopa.GTNHModify.strategies.Strategy;
-import com.github.wohaopa.GTNHModify.strategies.Tenths;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -19,8 +14,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class Config {
 
     public static Configuration config;
-
-    public static Strategy strategy = new None();
 
     private static boolean doSave;
 
@@ -50,17 +43,10 @@ public class Config {
             "None",
             "Possible values: [None, OneTick, Tenths, Output64, Energyless]");
 
-        switch (strategyName) {
-            case "OneTick" -> strategy = new OneTick();
-            case "Tenths" -> strategy = new Tenths();
-            case "Output64" -> strategy = new Output64();
-            case "Energyless" -> strategy = new Energyless();
-            default -> strategy = new None();
-        }
+        Strategy.setStrategy(strategyName);
 
         if (config.hasChanged() || doSave) {
             config.save();
-
             doSave = false;
         }
     }

@@ -7,6 +7,8 @@ import gregtech.api.util.GT_Recipe;
 
 public class Output64 extends Strategy {
 
+    protected Output64() {}
+
     @Override
     public void handler_GT_Recipe(GT_Recipe gtRecipe) {
         if (gtRecipe.mEUt > 1) gtRecipe.mEUt = 1;

@@ -1,31 +1,49 @@
 package com.github.wohaopa.GTNHModify.handler;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.github.wohaopa.GTNHModify.GTNHModifyMod;
+import com.github.wohaopa.GTNHModify.strategies.Strategy;
 
 public class Handlers {
 
     public static List<String> handlers = Arrays.asList("Furnace", "GT");
     private static final String Suffix = "_RecipesHandler";
+    private static final List<Method> methods = new ArrayList<>();
 
     public static void init() {
-        String pkg = Handlers.class.getName()
-            .replace("Handlers", "");
-        for (String name : handlers) {
-            String className = pkg + name + Suffix;
-            try {
-                Class<?> clazz = Class.forName(className);
-                IHandler iHandler = clazz.getAnnotation(IHandler.class);
-                if (iHandler != null) {
-                    clazz.getDeclaredMethod(iHandler.value())
-                        .invoke(null);
+        if (!Strategy.prevInit()) return;
+
+        if (methods.isEmpty()) {
+            String pkg = Handlers.class.getName()
+                .replace("Handlers", "");
+            for (String name : handlers) {
+                String className = pkg + name + Suffix;
+                try {
+                    Class<?> clazz = Class.forName(className);
+                    IHandler iHandler = clazz.getAnnotation(IHandler.class);
+                    if (iHandler != null) {
+                        Method method = clazz.getDeclaredMethod(iHandler.value());
+                        methods.add(method);
+                    }
+                } catch (ClassNotFoundException | NoSuchMethodException e) {
+                    GTNHModifyMod.LOG.debug("An error occurred while initializing handler. Reason: " + e.getMessage());
                 }
-            } catch (ClassNotFoundException | InvocationTargetException | IllegalAccessException
-                | NoSuchMethodException e) {
-                throw new RuntimeException(e);
+            }
+        } else {
+            for (Method method : methods) {
+                try {
+                    method.invoke(null);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    GTNHModifyMod.LOG.debug("An error occurred while executing handler. Reason: " + e.getMessage());
+                }
             }
         }
 
+        Strategy.postInit();
     }
 }
