@@ -16,10 +16,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     guiFactory = "com.github.wohaopa.GTNHModify.client.gui.GuiFactory",
     name = "GTNHModify",
     acceptedMinecraftVersions = "[1.7.10]",
+    acceptableRemoteVersions = "*",
     dependencies = "required-after:dreamcraft")
 public class GTNHModifyMod {
 
     public static final String MODID = "GTNHModify";
+
     public static final Logger LOG = LogManager.getLogger(MODID);
 
     @SidedProxy(

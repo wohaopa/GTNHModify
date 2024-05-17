@@ -1,4 +1,4 @@
-package com.github.wohaopa.GTNHModify.mixins;
+package com.github.wohaopa.GTNHModify.mixins.late;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

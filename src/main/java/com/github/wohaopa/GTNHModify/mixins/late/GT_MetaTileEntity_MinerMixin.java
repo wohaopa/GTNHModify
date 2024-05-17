@@ -1,4 +1,4 @@
-package com.github.wohaopa.GTNHModify.mixins;
+package com.github.wohaopa.GTNHModify.mixins.late;
 
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;

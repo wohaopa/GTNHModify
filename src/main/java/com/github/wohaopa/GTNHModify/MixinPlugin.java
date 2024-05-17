@@ -35,10 +35,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
         List<String> mixins = new ArrayList<>();
         // Minecraft
         mixins.add("TileEntityFurnaceMixin");
-        // GregTech
-        mixins.add("GT_MetaTileEntity_ScannerMixin");
-        mixins.add("GT_MetaTileEntity_MinerMixin");
-        mixins.add("GT_MetaTileEntity_MultiFurnaceMixin");
 
         return mixins;
     }
