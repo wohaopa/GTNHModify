@@ -22,6 +22,7 @@ public class LateMixinLoader implements ILateMixinLoader {
         mixins.add("GT_MetaTileEntity_ScannerMixin");
         mixins.add("GT_MetaTileEntity_MinerMixin");
         mixins.add("GT_MetaTileEntity_MultiFurnaceMixin");
+        mixins.add("GT_MetaTileEntity_DrillerBaseMixin");
 
         return mixins;
     }

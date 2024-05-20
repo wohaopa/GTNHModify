@@ -17,7 +17,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     name = "GTNHModify",
     acceptedMinecraftVersions = "[1.7.10]",
     acceptableRemoteVersions = "*",
-    dependencies = "required-after:dreamcraft")
+    dependencies = "required-after:gregtech;required-after:Thaumcraft")
 public class GTNHModifyMod {
 
     public static final String MODID = "GTNHModify";
