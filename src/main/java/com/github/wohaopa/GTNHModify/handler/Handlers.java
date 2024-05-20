@@ -11,8 +11,8 @@ import com.github.wohaopa.GTNHModify.strategies.Strategy;
 
 public class Handlers {
 
-    public static List<String> handlers = Arrays.asList("Furnace", "GT");
-    private static final String Suffix = "_RecipesHandler";
+    public static List<String> handlers = Arrays.asList("Minecraft", "GregTech", "Thaumcraft");
+    private static final String Suffix = "Handler";
     private static final List<Method> methods = new ArrayList<>();
 
     public static void init() {

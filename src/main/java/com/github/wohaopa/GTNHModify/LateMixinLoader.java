@@ -17,12 +17,27 @@ public class LateMixinLoader implements ILateMixinLoader {
 
     @Override
     public List<String> getMixins(Set<String> loadedMods) {
+
+        for (String modId : loadedMods) {
+            if (modId.equals("gregtech")) {
+                ModHelper.hasGregtech = true;
+            } else if (modId.equals("Thaumcraft")) {
+                ModHelper.hasThaumcraft = true;
+            }
+        }
+
         List<String> mixins = new ArrayList<>();
-        // GregTech
-        mixins.add("GT_MetaTileEntity_ScannerMixin");
-        mixins.add("GT_MetaTileEntity_MinerMixin");
-        mixins.add("GT_MetaTileEntity_MultiFurnaceMixin");
-        mixins.add("GT_MetaTileEntity_DrillerBaseMixin");
+
+        if (ModHelper.hasGregtech) {
+            // GregTech
+            mixins.add("gregtech.GT_MetaTileEntity_ScannerMixin");
+            mixins.add("gregtech.GT_MetaTileEntity_MinerMixin");
+            mixins.add("gregtech.GT_MetaTileEntity_MultiFurnaceMixin");
+            mixins.add("gregtech.GT_MetaTileEntity_DrillerBaseMixin");
+        }
+        if (ModHelper.hasThaumcraft) {
+
+        }
 
         return mixins;
     }

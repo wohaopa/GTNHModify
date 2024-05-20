@@ -1,19 +1,22 @@
 package com.github.wohaopa.GTNHModify.handler;
 
+import com.github.wohaopa.GTNHModify.ModHelper;
 import com.github.wohaopa.GTNHModify.strategies.Strategy;
 
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GT_Recipe;
 
 @IHandler("init")
-public class GT_RecipesHandler {
+public class GregTechHandler {
 
     protected static void init() {
+        if (!ModHelper.hasGregtech) return;
+
         RecipeMap.ALL_RECIPE_MAPS.forEach(
             (s, recipeMap) -> recipeMap.getAllRecipes()
                 .forEach(recipe -> Strategy.strategy.handler_GT_Recipe(recipe)));
-        GT_Recipe.GT_Recipe_AssemblyLine.sAssemblylineRecipes.forEach(
-            gtRecipeAssemblyLine -> { Strategy.strategy.handler_GT_Recipe_AssemblyLine(gtRecipeAssemblyLine); });
+        GT_Recipe.GT_Recipe_AssemblyLine.sAssemblylineRecipes
+            .forEach(gtRecipeAssemblyLine -> Strategy.strategy.handler_GT_Recipe_AssemblyLine(gtRecipeAssemblyLine));
 
     }
 
