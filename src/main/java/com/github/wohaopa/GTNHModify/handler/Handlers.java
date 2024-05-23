@@ -3,20 +3,24 @@ package com.github.wohaopa.GTNHModify.handler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.github.wohaopa.GTNHModify.GTNHModifyMod;
+import com.github.wohaopa.GTNHModify.ModHelper;
 import com.github.wohaopa.GTNHModify.strategies.Strategy;
 
 public class Handlers {
 
-    public static List<String> handlers = Arrays.asList("Minecraft", "GregTech", "Thaumcraft");
+    public static List<String> handlers = new ArrayList<>();
     private static final String Suffix = "Handler";
     private static final List<Method> methods = new ArrayList<>();
 
     public static void init() {
         if (!Strategy.prevInit()) return;
+
+        handlers.add("Minecraft");
+        if (ModHelper.hasGregtech) handlers.add("GregTech");
+        if (ModHelper.hasThaumcraft) handlers.add("Thaumcraft");
 
         GTNHModifyMod.LOG.info("Start processing the recipe");
         if (methods.isEmpty()) {

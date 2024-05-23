@@ -36,7 +36,7 @@ public class LateMixinLoader implements ILateMixinLoader {
             mixins.add("gregtech.GT_MetaTileEntity_DrillerBaseMixin");
         }
         if (ModHelper.hasThaumcraft) {
-
+            mixins.add("thaumcraft.TileAlchemyFurnaceMixin");
         }
 
         return mixins;
