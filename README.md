@@ -2,7 +2,7 @@
 GTNH modpack modification mod, dedicated to the modification of the recipe.
 
 English
-[中文](https://github.com/wohaopa/GTNHModify/blob/master/README_CN.md)
+[中文](./README_CN.md)
 
 ## Config
 Do so in the `GTNHmodify.cfg` file. There are several modes:
