@@ -1,0 +1,20 @@
+name: 汇报一个Bug
+description: "汇报一个Bug"
+labels: "bug"
+body:
+- type: input
+  id: version
+  attributes:
+    label: 你的整合包版本
+    description: 不同版本的整合包或许一点差异
+    placeholder: "例如: 2.5.1"
+  validations:
+    required: true
+
+- type: textarea
+  id: report
+  attributes:
+    label: Bug的具体细节
+    description: "请具体描述BUg的具体细节"
+  validations:
+    required: true
