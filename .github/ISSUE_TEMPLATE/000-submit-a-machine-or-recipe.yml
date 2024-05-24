@@ -1,6 +1,6 @@
 name: 提交新机器/配方
 description: "提交一个新的机器或配方修改的申请"
-labels:
+labels: "enhancement"
 body:
 - type: input
   id: version
