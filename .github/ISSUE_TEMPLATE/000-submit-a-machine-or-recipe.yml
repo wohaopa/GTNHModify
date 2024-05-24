@@ -1,0 +1,29 @@
+name: 提交新机器/配方
+description: "提交一个新的机器或配方修改的申请"
+labels:
+body:
+- type: input
+  id: version
+  attributes:
+    label: 你的整合包版本
+    description: 不同版本的整合包或许一点差异
+    placeholder: "例如: 2.5.1"
+  validations:
+    required: true
+- type: input
+  id: modid
+  attributes:
+    label: 机器/配方所属的Mod
+    description: 请尽量具体到具体Mod，比如TecTech等，而不是GregTech
+    placeholder: "例子: TecTech"
+  validations:
+    required: true
+
+- type: textarea
+  id: report
+  attributes:
+    label: 需要添加的机器、配方的具体细节
+    description: "请具体指出需要的内容"
+    placeholder: "例子: 为神秘的注魔添加配方处理，改成1tick，不消耗源质等。"
+  validations:
+    required: true
