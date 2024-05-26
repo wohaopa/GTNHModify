@@ -23,6 +23,8 @@ public class LateMixinLoader implements ILateMixinLoader {
                 ModHelper.hasGregtech = true;
             } else if (modId.equals("Thaumcraft")) {
                 ModHelper.hasThaumcraft = true;
+            } else if (modId.equals("gtnhintergalactic")) {
+                ModHelper.hasGtnhIntergalactic = true;
             }
         }
 
@@ -37,6 +39,9 @@ public class LateMixinLoader implements ILateMixinLoader {
         }
         if (ModHelper.hasThaumcraft) {
             mixins.add("thaumcraft.TileAlchemyFurnaceMixin");
+        }
+        if (ModHelper.hasGtnhIntergalactic) {
+            mixins.add("gtnhintergalactic.TileEntityModuleMinerMixin");
         }
 
         return mixins;
