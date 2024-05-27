@@ -1,1 +1,8 @@
 commands.gtnh-modify.usage=Used to export some game content.
+commands.gtnh-modify.help.usage=/gtnh-modify help: Get help
+commands.gtnh-modify.export.usage=/gtnh-modify export: Export
+commands.gtnh-modify.load.usage=/gtnh-modify load: Load modify if nei does not display correctly
+commands.gtnh-modify.hello.usage=/gtnh-modify hello: HelloWorld
+
+commands.gtnh-modify.load.success=Load Modify Success!
+commands.gtnh-modify.load.failure=Load Modify Failure! Probably need a restart, or it's already loaded!

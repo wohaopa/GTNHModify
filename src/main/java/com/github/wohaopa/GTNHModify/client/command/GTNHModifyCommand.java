@@ -11,6 +11,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 
+import com.github.wohaopa.GTNHModify.handler.Handlers;
+
 public class GTNHModifyCommand extends CommandBase {
 
     @Override
@@ -38,7 +40,7 @@ public class GTNHModifyCommand extends CommandBase {
         return "commands.gtnh-modify.usage";
     }
 
-    private static final List<String> subCmds = Stream.of("hello", "export", "help")
+    private static final List<String> subCmds = Stream.of("hello", "export", "help", "load")
         .sorted()
         .collect(Collectors.toList());
 
@@ -86,6 +88,11 @@ public class GTNHModifyCommand extends CommandBase {
                 switch (test) {
                     case "help" -> printHelps(sender);
                     case "hello" -> sender.addChatMessage(new ChatComponentText("你好"));
+                    case "load" -> {
+                        if (Handlers.init())
+                            sender.addChatMessage(new ChatComponentTranslation("commands.gtnh-modify.load.success"));
+                        else sender.addChatMessage(new ChatComponentTranslation("commands.gtnh-modify.load.failure"));
+                    }
                     default -> {
                         if (subCmds.contains(test)) {
                             printHelp(sender, test);
