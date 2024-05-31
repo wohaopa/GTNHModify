@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.wohaopa.GTNHModify.GTNHModifyMod;
-import com.github.wohaopa.GTNHModify.ModHelper;
+import com.github.wohaopa.GTNHModify.Mods;
 import com.github.wohaopa.GTNHModify.strategies.Strategy;
 
 public class Handlers {
@@ -22,8 +22,12 @@ public class Handlers {
         if (methods.isEmpty()) {
 
             handlers.add("Minecraft");
-            if (ModHelper.hasGregtech) handlers.add("GregTech");
-            if (ModHelper.hasThaumcraft) handlers.add("Thaumcraft");
+            for (Mods mod : Mods.values()) {
+                String handler = mod.getHandler();
+                if (handler != null) {
+                    handlers.add(handler);
+                }
+            }
 
             String pkg = Handlers.class.getName()
                 .replace("Handlers", "");

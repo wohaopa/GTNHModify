@@ -18,31 +18,28 @@ public class LateMixinLoader implements ILateMixinLoader {
     @Override
     public List<String> getMixins(Set<String> loadedMods) {
 
-        for (String modId : loadedMods) {
-            if (modId.equals("gregtech")) {
-                ModHelper.hasGregtech = true;
-            } else if (modId.equals("Thaumcraft")) {
-                ModHelper.hasThaumcraft = true;
-            } else if (modId.equals("gtnhintergalactic")) {
-                ModHelper.hasGtnhIntergalactic = true;
-            }
+        for (Mods mod : Mods.values()) {
+            if (loadedMods.contains(mod.modid)) mod.setLoaded();
         }
 
         List<String> mixins = new ArrayList<>();
 
-        if (ModHelper.hasGregtech) {
+        if (Mods.GregTech.isLoaded()) {
             // GregTech
             mixins.add("gregtech.GT_MetaTileEntity_ScannerMixin");
             mixins.add("gregtech.GT_MetaTileEntity_MinerMixin");
             mixins.add("gregtech.GT_MetaTileEntity_MultiFurnaceMixin");
             mixins.add("gregtech.GT_MetaTileEntity_DrillerBaseMixin");
         }
-        if (ModHelper.hasThaumcraft) {
+        if (Mods.Thaumcraft.isLoaded()) {
             mixins.add("thaumcraft.TileAlchemyFurnaceMixin");
             mixins.add("thaumcraft.TileNodeMixin");
         }
-        if (ModHelper.hasGtnhIntergalactic) {
+        if (Mods.GtnhIntergalactic.isLoaded()) {
             mixins.add("gtnhintergalactic.TileEntityModuleMinerMixin");
+        }
+        if (Mods.Botania.isLoaded()) {
+            // mixins.add("botania.BotaniaMixin");
         }
 
         return mixins;
