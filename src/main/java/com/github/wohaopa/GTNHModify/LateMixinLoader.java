@@ -39,6 +39,7 @@ public class LateMixinLoader implements ILateMixinLoader {
         }
         if (ModHelper.hasThaumcraft) {
             mixins.add("thaumcraft.TileAlchemyFurnaceMixin");
+            mixins.add("thaumcraft.TileNodeMixin");
         }
         if (ModHelper.hasGtnhIntergalactic) {
             mixins.add("gtnhintergalactic.TileEntityModuleMinerMixin");
