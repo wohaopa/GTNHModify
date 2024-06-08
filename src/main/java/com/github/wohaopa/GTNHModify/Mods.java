@@ -22,7 +22,7 @@ public enum Mods {
     }
 
     public String getHandler() {
-        if (hasHandler) return null;
+        if (!hasHandler) return null;
         return name();
     }
 
