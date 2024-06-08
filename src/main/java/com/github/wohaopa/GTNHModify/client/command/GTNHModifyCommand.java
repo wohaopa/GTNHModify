@@ -11,6 +11,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 
+import com.github.wohaopa.GTNHModify.DumpUtil;
+import com.github.wohaopa.GTNHModify.dumpers.MinecraftDumper;
 import com.github.wohaopa.GTNHModify.handler.Handlers;
 
 public class GTNHModifyCommand extends CommandBase {
@@ -93,6 +95,10 @@ public class GTNHModifyCommand extends CommandBase {
                             sender.addChatMessage(new ChatComponentTranslation("commands.gtnh-modify.load.success"));
                         else sender.addChatMessage(new ChatComponentTranslation("commands.gtnh-modify.load.failure"));
                     }
+                    case "export" -> {
+                        DumpUtil.submitTask(new MinecraftDumper(s -> sender.addChatMessage(new ChatComponentText(s))));
+                        DumpUtil.completeSubmitTask();
+                    }
                     default -> {
                         if (subCmds.contains(test)) {
                             printHelp(sender, test);
@@ -113,7 +119,6 @@ public class GTNHModifyCommand extends CommandBase {
                         }
                     }
                 }
-                return;
             }
 
         }
