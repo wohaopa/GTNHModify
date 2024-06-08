@@ -39,7 +39,7 @@ public class LateMixinLoader implements ILateMixinLoader {
             mixins.add("gtnhintergalactic.TileEntityModuleMinerMixin");
         }
         if (Mods.Botania.isLoaded()) {
-            // mixins.add("botania.BotaniaMixin");
+            mixins.add("botania.TileSpreaderMixin");
         }
 
         return mixins;
