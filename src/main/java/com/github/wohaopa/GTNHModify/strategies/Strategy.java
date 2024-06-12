@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
+import com.github.technus.tectech.recipe.EyeOfHarmonyRecipe;
 import com.github.wohaopa.GTNHModify.GTNHModifyMod;
 
 import gregtech.api.util.GT_Recipe;
@@ -75,4 +76,6 @@ public abstract class Strategy {
     public int handler_FurnaceProcessingTime(Object owner, int number) {
         return number;
     }
+
+    public void handler_EyeOfHarmonyRecipe(EyeOfHarmonyRecipe eyeOfHarmonyRecipe) {}
 }
