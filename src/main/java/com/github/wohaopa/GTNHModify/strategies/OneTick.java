@@ -10,7 +10,10 @@ public class OneTick extends Strategy {
 
     @Override
     public void handler_GT_Recipe(GT_Recipe gtRecipe) {
-        gtRecipe.mDuration = 1;
+        if (gtRecipe.getRecipeCategory().unlocalizedName.equals("gg.recipe.naquadah_reactor")) {
+            gtRecipe.mDuration *= 10;
+        } else gtRecipe.mDuration = 1;
+
     }
 
     @Override
