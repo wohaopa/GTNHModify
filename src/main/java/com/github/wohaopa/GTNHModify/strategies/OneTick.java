@@ -31,22 +31,79 @@ public class OneTick extends Strategy {
         return 1;
     }
 
-    private Field field;
+    private Field miningTimeSecondsField;
+    private Field hydrogenRequirementField;
+    private Field heliumRequirementField;
+    private Field baseSuccessChanceField;
 
     public void handler_EyeOfHarmonyRecipe(EyeOfHarmonyRecipe eyeOfHarmonyRecipe) {
-        if (field == null) {
-            try {
-                Class<?> clazz = EyeOfHarmonyRecipe.class;
-                field = clazz.getDeclaredField("miningTimeSeconds");
-                field.setAccessible(true);
+        Class<?> clazz = EyeOfHarmonyRecipe.class;
 
-            } catch (NoSuchFieldException ignored) {}
-        }
-        try {
-            if (field != null) {
-                field.setLong(eyeOfHarmonyRecipe, 1);
+        // miningTimeSeconds
+        {
+            if (miningTimeSecondsField == null) {
+                try {
+                    miningTimeSecondsField = clazz.getDeclaredField("miningTimeSeconds");
+                    miningTimeSecondsField.setAccessible(true);
+                } catch (NoSuchFieldException ignored) {}
             }
-        } catch (IllegalAccessException ignored) {}
+            if (miningTimeSecondsField != null) {
+                try {
+                    miningTimeSecondsField.setLong(eyeOfHarmonyRecipe, 1);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+
+        // hydrogenRequirement
+        {
+            if (hydrogenRequirementField == null) {
+                try {
+                    hydrogenRequirementField = clazz.getDeclaredField("hydrogenRequirement");
+                    hydrogenRequirementField.setAccessible(true);
+
+                } catch (NoSuchFieldException ignored) {}
+            }
+            if (hydrogenRequirementField != null) {
+                try {
+                    long hydrogenRequirement = hydrogenRequirementField.getLong(eyeOfHarmonyRecipe);
+                    hydrogenRequirementField.setLong(eyeOfHarmonyRecipe, 0);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+
+        // heliumRequirement
+        {
+            if (heliumRequirementField == null) {
+                try {
+                    heliumRequirementField = clazz.getDeclaredField("heliumRequirement");
+                    heliumRequirementField.setAccessible(true);
+
+                } catch (NoSuchFieldException ignored) {}
+            }
+            if (heliumRequirementField != null) {
+                try {
+                    long heliumRequirement = heliumRequirementField.getLong(eyeOfHarmonyRecipe);
+                    heliumRequirementField.setLong(eyeOfHarmonyRecipe, 0);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+
+        // baseSuccessChance
+        {
+            if (baseSuccessChanceField == null) {
+                try {
+                    baseSuccessChanceField = clazz.getDeclaredField("baseSuccessChance");
+                    baseSuccessChanceField.setAccessible(true);
+
+                } catch (NoSuchFieldException ignored) {}
+            }
+            if (baseSuccessChanceField != null) {
+                try {
+                    double baseSuccessChance = baseSuccessChanceField.getDouble(eyeOfHarmonyRecipe);
+                    baseSuccessChanceField.setDouble(eyeOfHarmonyRecipe, 5);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
     }
 
 }
