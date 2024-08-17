@@ -68,7 +68,7 @@ public class OneTick extends Strategy {
             if (hydrogenRequirementField != null) {
                 try {
                     long hydrogenRequirement = hydrogenRequirementField.getLong(eyeOfHarmonyRecipe);
-                    hydrogenRequirementField.setLong(eyeOfHarmonyRecipe, 1000);
+                    hydrogenRequirementField.setLong(eyeOfHarmonyRecipe, 1);
                 } catch (IllegalAccessException ignored) {}
             }
         }
@@ -85,7 +85,7 @@ public class OneTick extends Strategy {
             if (heliumRequirementField != null) {
                 try {
                     long heliumRequirement = heliumRequirementField.getLong(eyeOfHarmonyRecipe);
-                    heliumRequirementField.setLong(eyeOfHarmonyRecipe, 1000);
+                    heliumRequirementField.setLong(eyeOfHarmonyRecipe, 1);
                 } catch (IllegalAccessException ignored) {}
             }
         }
