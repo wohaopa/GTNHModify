@@ -35,6 +35,8 @@ public class OneTick extends Strategy {
     private Field hydrogenRequirementField;
     private Field heliumRequirementField;
     private Field baseSuccessChanceField;
+    private Field euOutputField;
+    private Field euStartCostField;
 
     public void handler_EyeOfHarmonyRecipe(EyeOfHarmonyRecipe eyeOfHarmonyRecipe) {
         Class<?> clazz = EyeOfHarmonyRecipe.class;
@@ -66,7 +68,7 @@ public class OneTick extends Strategy {
             if (hydrogenRequirementField != null) {
                 try {
                     long hydrogenRequirement = hydrogenRequirementField.getLong(eyeOfHarmonyRecipe);
-                    hydrogenRequirementField.setLong(eyeOfHarmonyRecipe, 0);
+                    hydrogenRequirementField.setLong(eyeOfHarmonyRecipe, 1000);
                 } catch (IllegalAccessException ignored) {}
             }
         }
@@ -83,7 +85,7 @@ public class OneTick extends Strategy {
             if (heliumRequirementField != null) {
                 try {
                     long heliumRequirement = heliumRequirementField.getLong(eyeOfHarmonyRecipe);
-                    heliumRequirementField.setLong(eyeOfHarmonyRecipe, 0);
+                    heliumRequirementField.setLong(eyeOfHarmonyRecipe, 1000);
                 } catch (IllegalAccessException ignored) {}
             }
         }
@@ -101,6 +103,36 @@ public class OneTick extends Strategy {
                 try {
                     double baseSuccessChance = baseSuccessChanceField.getDouble(eyeOfHarmonyRecipe);
                     baseSuccessChanceField.setDouble(eyeOfHarmonyRecipe, 5);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+
+        // euOutput
+        {
+            if (euOutputField == null) {
+                try {
+                    euOutputField = clazz.getDeclaredField("euOutput");
+                    euOutputField.setAccessible(true);
+                } catch (NoSuchFieldException ignored) {}
+            }
+            if (euOutputField != null) {
+                try {
+                    euOutputField.setLong(eyeOfHarmonyRecipe, 999999999);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+
+        // euStartCost
+        {
+            if (euStartCostField == null) {
+                try {
+                    euStartCostField = clazz.getDeclaredField("euStartCost");
+                    euStartCostField.setAccessible(true);
+                } catch (NoSuchFieldException ignored) {}
+            }
+            if (euStartCostField != null) {
+                try {
+                    euStartCostField.setLong(eyeOfHarmonyRecipe, 114);
                 } catch (IllegalAccessException ignored) {}
             }
         }
