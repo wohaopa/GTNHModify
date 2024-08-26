@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import com.github.wohaopa.GTNHModify.handler.GregTechHandler;
+import com.github.wohaopa.GTNHModify.tweakers.handler.GregTechHandler;
 
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_Miner;
 
@@ -27,6 +27,6 @@ public class GT_MetaTileEntity_MinerMixin {
             target = "Lgregtech/common/tileentities/machines/basic/GT_MetaTileEntity_Miner;mSpeed:I",
             opcode = Opcodes.GETFIELD))
     private int injected(GT_MetaTileEntity_Miner miner) {
-        return GregTechHandler.handle(miner, mSpeed);
+        return GregTechHandler.instance.handle(miner, mSpeed);
     }
 }

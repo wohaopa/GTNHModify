@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import com.github.wohaopa.GTNHModify.handler.ThaumcraftHandler;
+import com.github.wohaopa.GTNHModify.tweakers.handler.ThaumcraftHandler;
 
 import thaumcraft.common.tiles.TileNode;
 
@@ -23,6 +23,6 @@ public abstract class TileNodeMixin {
             target = "Lthaumcraft/common/tiles/TileNode;regeneration:I",
             opcode = Opcodes.PUTFIELD))
     private void injectedHandleRecharge(TileNode tileNode, int regeneration) {
-        this.regeneration = ThaumcraftHandler.handle(tileNode, regeneration);
+        this.regeneration = ThaumcraftHandler.instance.handle(tileNode, regeneration);
     }
 }

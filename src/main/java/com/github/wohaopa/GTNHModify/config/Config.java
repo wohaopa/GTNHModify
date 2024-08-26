@@ -5,7 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 import com.github.wohaopa.GTNHModify.GTNHModifyMod;
-import com.github.wohaopa.GTNHModify.strategies.Strategy;
+import com.github.wohaopa.GTNHModify.tweakers.Tweakers;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -37,13 +37,10 @@ public class Config {
 
     private static void loadConfig() {
 
-        String strategyName = config.getString(
-            "Strategy",
-            Configuration.CATEGORY_GENERAL,
-            "None",
-            "Possible values: [None, OneTick, Tenths, Output64, Energyless]");
-
-        Strategy.setStrategy(strategyName);
+        for (Tweakers tweaker : Tweakers.values()) {
+            tweaker.enabled = config
+                .getBoolean(tweaker.name, Configuration.CATEGORY_GENERAL, false, tweaker.description);
+        }
 
         if (config.hasChanged() || doSave) {
             config.save();

@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import com.github.wohaopa.GTNHModify.handler.ThaumcraftHandler;
+import com.github.wohaopa.GTNHModify.tweakers.handler.BotaniaHandler;
 
 import vazkii.botania.common.block.tile.mana.TileSpreader;
 
@@ -19,6 +19,6 @@ public abstract class TileSpreaderMixin {
             target = "Lvazkii/botania/common/block/tile/mana/TileSpreader;pingbackTicks:I",
             opcode = Opcodes.PUTFIELD))
     private void injectedPingback(TileSpreader tileSpreader, int pingbackTicks) {
-        tileSpreader.pingbackTicks = ThaumcraftHandler.handle(tileSpreader, pingbackTicks);
+        tileSpreader.pingbackTicks = BotaniaHandler.instance.handle(tileSpreader, pingbackTicks);
     }
 }
