@@ -36,7 +36,7 @@ public enum Tweakers {
     public static void initialize() {
         for (Tweakers tweaker : Tweakers.values()) {
             if (tweaker.enabled) {
-                tweaker.tweaker.apply();
+                tweaker.tweaker.apply0();
             }
         }
     }
