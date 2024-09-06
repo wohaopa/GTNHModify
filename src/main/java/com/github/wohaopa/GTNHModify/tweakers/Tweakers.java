@@ -45,10 +45,12 @@ public enum Tweakers {
     public final String description;
     public final ITweaker tweaker;
     public boolean enabled;
+    public Object setting;
 
     Tweakers(String name, String description, ITweaker tweaker) {
         this.name = name;
         this.description = description;
         this.tweaker = tweaker;
+        setting = tweaker.getSettings();
     }
 }

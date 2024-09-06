@@ -7,19 +7,21 @@ import gregtech.api.util.GT_Recipe;
 
 public class InputOne extends GT_RecipeTweaker {
 
+    Integer integer = 1;
+
     @Override
     protected void modifyGT_Recipe(GT_Recipe aRecipe) {
         if (aRecipe.mInputs != null) {
             for (ItemStack itemStack : aRecipe.mInputs) {
                 if (itemStack != null) {
-                    if (itemStack.stackSize > 0) itemStack.stackSize = 1;
+                    if (itemStack.stackSize > integer) itemStack.stackSize = integer;
                 }
             }
         }
         if (aRecipe.mFluidInputs != null) {
             for (FluidStack fluidStack : aRecipe.mFluidInputs) {
                 if (fluidStack != null) {
-                    if (fluidStack.amount > 0) fluidStack.amount = 1;
+                    if (fluidStack.amount > integer) fluidStack.amount = integer;
                 }
             }
         }
@@ -30,16 +32,21 @@ public class InputOne extends GT_RecipeTweaker {
         if (aRecipe.mInputs != null) {
             for (ItemStack itemStack : aRecipe.mInputs) {
                 if (itemStack != null) {
-                    if (itemStack.stackSize > 0) itemStack.stackSize = 1;
+                    if (itemStack.stackSize > integer) itemStack.stackSize = integer;
                 }
             }
         }
         if (aRecipe.mFluidInputs != null) {
             for (FluidStack fluidStack : aRecipe.mFluidInputs) {
                 if (fluidStack != null) {
-                    if (fluidStack.amount > 0) fluidStack.amount = 1;
+                    if (fluidStack.amount > integer) fluidStack.amount = integer;
                 }
             }
         }
+    }
+
+    @Override
+    public Object getSettings() {
+        return integer;
     }
 }

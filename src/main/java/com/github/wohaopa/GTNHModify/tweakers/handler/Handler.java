@@ -6,13 +6,20 @@ public abstract class Handler extends ITweaker {
 
     private boolean enable = false;
 
+    Integer integer = 1;
+
     public int handle(Object owner, int number) {
-        if (enable) return 1;
+        if (enable) return integer;
         else return number;
     }
 
     @Override
     protected void apply() {
         enable = true;
+    }
+
+    @Override
+    public Object getSettings() {
+        return integer;
     }
 }

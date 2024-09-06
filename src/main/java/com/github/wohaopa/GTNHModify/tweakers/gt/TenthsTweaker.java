@@ -4,13 +4,20 @@ import gregtech.api.util.GT_Recipe;
 
 public class TenthsTweaker extends GT_RecipeTweaker {
 
+    Integer integer = 10;
+
     @Override
     protected void modifyGT_Recipe(GT_Recipe aRecipe) {
-        aRecipe.mDuration /= 10;
+        aRecipe.mDuration /= integer;
     }
 
     @Override
     protected void modifyGT_Recipe_AssemblyLine(GT_Recipe.GT_Recipe_AssemblyLine aRecipe) {
-        aRecipe.mDuration /= 10;
+        aRecipe.mDuration /= integer;
+    }
+
+    @Override
+    public Object getSettings() {
+        return integer;
     }
 }

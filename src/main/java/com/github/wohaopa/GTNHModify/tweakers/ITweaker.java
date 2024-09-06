@@ -13,4 +13,8 @@ public abstract class ITweaker {
     protected abstract void apply();
 
     void exportRecipe() {}
+
+    public Object getSettings() {
+        return null;
+    }
 }
