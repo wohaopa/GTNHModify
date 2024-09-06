@@ -21,6 +21,7 @@ public enum Tweakers {
     Output("GT_Recipe Input_64", "The output of GT_Recipe is 64.", new Output64()),
     Dynamic_Duration("GT_Recipe DynamicDuration", "The duration will calculate the multiplier based on real time",
         DynamicDuration.instance),
+    Fusion("Fusion’s power on energy", "The power on energy is all set to 1", new FusionTweaker()),
 
     // GG Naquadah reactor
     GGNaquadahReactor("Other GGNaquadahReactor", "Ten times the burn time.", new GGNaquadahReactorTweaker()),
