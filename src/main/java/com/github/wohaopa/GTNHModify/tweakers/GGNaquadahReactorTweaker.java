@@ -4,7 +4,7 @@ import goodgenerator.api.recipe.GoodGeneratorRecipeMaps;
 
 public class GGNaquadahReactorTweaker extends ITweaker {
 
-    Integer integer = 10;
+    int integer = 10;
 
     @Override
     public void apply() {
@@ -15,5 +15,10 @@ public class GGNaquadahReactorTweaker extends ITweaker {
     @Override
     public Object getSettings() {
         return integer;
+    }
+
+    @Override
+    public void setSetting(Object s) {
+        integer = (int) s;
     }
 }

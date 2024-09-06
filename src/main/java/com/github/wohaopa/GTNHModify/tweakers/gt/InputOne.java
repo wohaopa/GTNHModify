@@ -7,7 +7,7 @@ import gregtech.api.util.GT_Recipe;
 
 public class InputOne extends GT_RecipeTweaker {
 
-    Integer integer = 1;
+    int integer = 1;
 
     @Override
     protected void modifyGT_Recipe(GT_Recipe aRecipe) {
@@ -48,5 +48,10 @@ public class InputOne extends GT_RecipeTweaker {
     @Override
     public Object getSettings() {
         return integer;
+    }
+
+    @Override
+    public void setSetting(Object s) {
+        integer = (int) s;
     }
 }

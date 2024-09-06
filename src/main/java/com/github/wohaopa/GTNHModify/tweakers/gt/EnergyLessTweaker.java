@@ -4,7 +4,7 @@ import gregtech.api.util.GT_Recipe;
 
 public class EnergyLessTweaker extends GT_RecipeTweaker {
 
-    Integer integer = 0;
+    int integer = 0;
 
     @Override
     protected void modifyGT_Recipe(GT_Recipe aRecipe) {
@@ -19,5 +19,10 @@ public class EnergyLessTweaker extends GT_RecipeTweaker {
     @Override
     public Object getSettings() {
         return integer;
+    }
+
+    @Override
+    public void setSetting(Object s) {
+        integer = (int) s;
     }
 }

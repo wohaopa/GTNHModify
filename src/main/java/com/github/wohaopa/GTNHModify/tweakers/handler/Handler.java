@@ -6,7 +6,7 @@ public abstract class Handler extends ITweaker {
 
     private boolean enable = false;
 
-    Integer integer = 1;
+    int integer = 1;
 
     public int handle(Object owner, int number) {
         if (enable) return integer;
@@ -21,5 +21,10 @@ public abstract class Handler extends ITweaker {
     @Override
     public Object getSettings() {
         return integer;
+    }
+
+    @Override
+    public void setSetting(Object s) {
+        integer = (int) s;
     }
 }

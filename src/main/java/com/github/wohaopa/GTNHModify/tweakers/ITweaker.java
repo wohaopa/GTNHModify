@@ -17,4 +17,6 @@ public abstract class ITweaker {
     public Object getSettings() {
         return null;
     }
+
+    public void setSetting(Object setting) {}
 }

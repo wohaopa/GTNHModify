@@ -1,5 +1,6 @@
 package com.github.wohaopa.GTNHModify.tweakers;
 
+import com.github.wohaopa.GTNHModify.tweakers.gt.DynamicDuration;
 import com.github.wohaopa.GTNHModify.tweakers.gt.EnergyLessTweaker;
 import com.github.wohaopa.GTNHModify.tweakers.gt.InputOne;
 import com.github.wohaopa.GTNHModify.tweakers.gt.OneTickTweaker;
@@ -18,6 +19,8 @@ public enum Tweakers {
     EnergyLess("GT_Recipe EnergyLess", "GT_Recipe requires no energy.", new EnergyLessTweaker()),
     Input_1("GT_Recipe Input_1", "The input of GT_Recipe is 1.", new InputOne()),
     Output("GT_Recipe Input_64", "The output of GT_Recipe is 64.", new Output64()),
+    Dynamic_Duration("GT_Recipe DynamicDuration", "The duration will calculate the multiplier based on real time",
+        DynamicDuration.instance),
 
     // GG Naquadah reactor
     GGNaquadahReactor("Other GGNaquadahReactor", "Ten times the burn time.", new GGNaquadahReactorTweaker()),
@@ -45,12 +48,10 @@ public enum Tweakers {
     public final String description;
     public final ITweaker tweaker;
     public boolean enabled;
-    public Object setting;
 
     Tweakers(String name, String description, ITweaker tweaker) {
         this.name = name;
         this.description = description;
         this.tweaker = tweaker;
-        setting = tweaker.getSettings();
     }
 }

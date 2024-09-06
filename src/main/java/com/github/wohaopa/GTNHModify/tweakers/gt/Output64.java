@@ -7,7 +7,7 @@ import gregtech.api.util.GT_Recipe;
 
 public class Output64 extends GT_RecipeTweaker {
 
-    Integer integer = 64;
+    int integer = 64;
 
     @Override
     protected void modifyGT_Recipe(GT_Recipe aRecipe) {
@@ -40,5 +40,10 @@ public class Output64 extends GT_RecipeTweaker {
     @Override
     public Object getSettings() {
         return integer;
+    }
+
+    @Override
+    public void setSetting(Object s) {
+        integer = (int) s;
     }
 }
